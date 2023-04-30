@@ -8,7 +8,7 @@ main {
 main form input[type=text],main form input[type=url], main form input[type=password] {
     width: 98%;
 }
-main form input[type=submit]{
+main form input[type=submit] {
     width: 100%;
 }
 main form input {
