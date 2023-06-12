@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="permaLogin.css">
     <title>OpenBakalari login</title>
-    <style id="dyn"></style>
   </head>
   <body>
     <script src="renderer.js"></script>
@@ -16,7 +14,7 @@
         <center><h1>OpenBakaláři</h1></center>
       </header>
       <article>
-          <form onsubmit="login()">
+        <form onsubmit="login()">
           <span class="hints">Domena: </span><br>
           <input placeholder="Doména" type="url" name="domain" id="inst"><br>
           <span class="hints">Uzivatelske jmeno: </span><br>
@@ -29,24 +27,5 @@
       <hr>
       <span class="other">Custom wrapper pro bakalare</span>
     </main>
-    <script src="themeParser.js"></script>
-    <script>
-      onload=theme(`{"colors":{
-    "back":"#303446",
-    "inputs":"#a5adce",
-    "greytext":"#000000",
-    "button":"#292c3c",
-    "buttontext":"#b5bfe2",
-    "buttonhov":"#414559",
-    "borderc":"#babbf1",
-    "text1":"#a6d189", 
-    "text2":"#e5c890",
-    "text3":"#0000000",
-    "text4":"#c6d0f5"}, 
-"other":{
-    "round":10, 
-    "border":1,
-    "font":"monospace"}}`)
-    </script>
   </body>
 </html>
