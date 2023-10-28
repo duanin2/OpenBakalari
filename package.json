@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/duanin2/OpenBakalari/issues"
   },
-  "homepage": "https://github.com/duanin2/OpenBakalari#readme"
+  "homepage": "https://github.com/duanin2/OpenBakalari#readme",
+  "dependencies": {
+    "@nodegui/nodegui": "^0.62.0"
+  }
 }
