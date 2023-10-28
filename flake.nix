@@ -7,7 +7,7 @@
   outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system: let
     overlays = [
       (final: prev: rec {
-        nodejs = prev.nodejs_20;
+        nodejs = prev.nodejs_18;
         pnpm = prev.nodePackages.pnpm;
         yarn = (prev.yarn.override { inherit nodejs; });
       })
