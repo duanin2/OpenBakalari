@@ -7,6 +7,31 @@ import envPaths from "env-paths";
 
 const paths = envPaths("OpenBakalari", { suffix: "" });
 
+const widgetsOrder = (widgets, order = null, layout) => {
+		let orderedWidgets = [];
+
+		if (order != null) {
+				for (const name in widgets) {
+						for (let i = 0; i < order.length; i++) {
+								if (order[i] != name) {
+										continue;
+								}
+								
+								orderedWidgets[i] = widgets[name];
+						}
+				}
+		} else {
+				if (typeof(widgets) != "array") {
+						throw new TypeError("An array with ordered attribute names is required for objects.");
+				}
+				orderedWidgets = widgets;
+		}
+		
+		for (const widget of orderedWidgets) {
+				layout.addWidget(widget);
+		}
+};
+
 const usersDBFilename = "usersDB";
 
 const loginWidgets = {};
@@ -98,6 +123,7 @@ loginWidgets["userSelector"].addEventListener('currentTextChanged', (text) => {
 				loginWidgets["instance"].setText("");
 				loginWidgets["username"].setText("");
 				loginWidgets["password"].setText("");
+				return;
 		}
 		
 		const instance = text.split(":")[0];
@@ -162,7 +188,8 @@ loginWidgets["login"].addEventListener('clicked', () => {
 						
 						const usersDBwrite = fs.writeFile(path.join(paths.data, usersDBFilename), JSON.stringify(users), { mode: 0o600 });
 						
-				loginWin.hide();
+						loginWin.hide();
+						win.show();
 				});
 		});
 
@@ -186,7 +213,7 @@ loginWidgets["cancel"].addEventListener('clicked', () => {
 		qApp.quit();
 });
 
-loginWidgets.order = [
+widgetsOrder(loginWidgets, [
 		"label",
 		"errorMessage",
 		"userSelector",
@@ -196,23 +223,7 @@ loginWidgets.order = [
 		"password",
 		"login",
 		"cancel"
-];
-let orderedLoginWidgets = [];
-for (const name in loginWidgets) {
-		if (name == "order") {
-				continue;
-		}
-		for (let i = 0; i < loginWidgets.order.length; i++) {
-				if (loginWidgets.order[i] != name) {
-						continue;
-				}
-
-				orderedLoginWidgets[i] = loginWidgets[name];
-		}
-}
-for (const widget of orderedLoginWidgets) {
-		loginLayout.addWidget(widget);
-}
+], loginLayout);
 
 loginWin.show();
 
