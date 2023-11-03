@@ -1,6 +1,6 @@
 import { QLayout } from '@nodegui/nodegui';
 
-class orderedObject {
+class OrderedObject {
 		#object = {};
 		#order = [];
 
@@ -78,10 +78,10 @@ class orderedObject {
 		get value() {
 				let ordered = [];
 
-				for (const name in object) {
-						for (let i = 0; i < order.length; i++) {
-								if (order[i] == name) {
-										ordered[i] = object[name];
+				for (const name in this.#object) {
+						for (let i = 0; i < this.#order.length; i++) {
+								if (this.#order[i] == name) {
+										ordered[i] = this.#object[name];
 										break;
 								}
 						}
@@ -90,11 +90,11 @@ class orderedObject {
 				return ordered;
 		}
 
-		valueAtIndex(index) {
+		getValueAt(index) {
 				let name = this.#order[index];
 				return this.#object[name];
 		}
-		valueOfName(name) {
+		getValueOf(name) {
 				return this.#object[name];
 		}
 		getIndexOf(name) {
@@ -118,20 +118,24 @@ class orderedObject {
 
 class OrderedLayout extends OrderedObject {
 		#layout;
-		constructor(initialOrder = null, initialWidgets = null, layout) {
-				if !(new layout() instanceof QLayout) {
-						throw new TypeError("Expected QLayout.");
-				}
-				
-				super(initialOrder, initialWidgets);
+		#order = [];
+		#object = {};
+		constructor(layout, initialOrder = null, initialWidgets = null) {
+				if (layout.type == "layout") {
+						super(initialOrder, initialWidgets);
 
-				this.#layout = layout;
-				this.#reorder();
+						this.#layout = layout;
+						this.#reorder();
+						
+						return;
+				}
+
+				throw new TypeError("Expected QLayout.");
 		}
 
 		#reorder() {
-				for (const widget of this.#layout.children()) {
-						this.#layout.removeWidget(widget);
+				for (const name of this.#order) {
+						this.#layout.removeWidget(this.getValueOf(name));
 				}
 				for (const widget of super.value) {
 						this.#layout.addWidget(widget);
