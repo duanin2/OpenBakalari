@@ -23,7 +23,10 @@
         androidComposition = pkgs.androidenv.composeAndroidPackages {
           includeEmulator = false;
           platformVersions = [ "26" "27" "28" "29" "30" "31" "32" "33" "34" ];
-          includeSources = false;
+          platformToolsVersion = "33.0.3";
+          buildToolsVersions = [ "33.0.0" ];
+          ndkVersion = "25.1.8937393";
+          includeSources = true;
           includeSystemImages = false;
           abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
           includeNDK = true;
