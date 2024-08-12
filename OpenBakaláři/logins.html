@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Přihlášení - OpenBakaláři</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+  <body>
+    <form id="loginForm" method="get">
+      <label for="selAcc">Account: </label>
+      <select id="selAcc" name="acc"></select>
+      <button id="newAcc">Nový účet</button>
+      <button id="editAcc">Upravit účet</button>
+      <div id="accInfo" hidden>
+	<label for="inst">Instance: </label>
+	<input type="text" id="inst" name="inst"><br>
+	<label for="user">Uživatelské jméno: </label>
+	<input type="text" id="user" name="user"><br>
+	<label for="pass">Heslo: </label>
+	<input type="password" id="pass" name="pass"><br>
+      </div>
+      <input type="submit" value="Odeslat">
+    </form>
+    <span id="login"><span>
+  </body>
+</html>
